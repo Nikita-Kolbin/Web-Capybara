@@ -3,4 +3,7 @@ from django.shortcuts import render
 
 
 def home(request):
-    return HttpResponse('Main page')
+    context = {
+        'title': 'Главная страница'
+    }
+    return render(request, 'webapp/index.html', context=context)
