@@ -4,11 +4,12 @@ from django.views.generic import ListView
 from .models import *
 
 
-def home(request):
+def post(request, post_id):
     context = {
-        'title': 'Главная страница'
+        'title': 'пост',
+        'post': Post.objects.get(pk=post_id)
     }
-    return render(request, 'webapp/index.html', context=context)
+    return render(request, 'webapp/post.html', context=context)
 
 
 class Home(ListView):
@@ -20,6 +21,5 @@ class Home(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Главная'
-        context['in_row'] = 3
         return context
 

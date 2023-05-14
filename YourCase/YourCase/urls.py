@@ -21,7 +21,8 @@ from YourCase import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('webapp.urls'))
+    path('', include('webapp.urls')),
+    path('user/', include('userapp.urls'))
 ]
 
 if settings.DEBUG:

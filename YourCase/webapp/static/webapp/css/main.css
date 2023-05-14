@@ -1,0 +1,29 @@
+.loh {
+    text-align: right;
+}
+
+.card1 {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+position: absolute;
+width: 260px;
+height: 232px;
+left: 20px;
+top: 20px;
+}
+
+.img1{
+/* Rectangle 5 */
+width: 260px;
+height: 204px;
+background: url(image.png);
+border-radius: 18px;
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+}

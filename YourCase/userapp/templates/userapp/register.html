@@ -1,0 +1,15 @@
+{% extends 'userapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<p style="font-size: 30px;">Регистрация</p>
+<a href="{% url 'home' %}" style="font-size: 18px;"> Главная </a>
+
+<form action="{% url 'register' %}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+.aside_left {
+    float: left;
+    width: 50%;
+}
+
+.aside_right {
+    float: right;
+    width: 49%;
+}
+
+aside img{
+    width: 100%;
+}
+
+article {
+    margin-left: 700px;
+    display: block;
+}
