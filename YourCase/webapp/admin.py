@@ -12,6 +12,12 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'name')
 
 
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'avatar', 'speciality', 'about', 'link')
+    list_display_links = ('user', 'avatar', 'speciality', 'about', 'link')
+
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Profile, ProfileAdmin)
 

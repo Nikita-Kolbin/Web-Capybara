@@ -1,6 +1,10 @@
-{% extends 'webapp/base.html' %}
+{% extends 'webapp/header.html' %}
 
-{% block content %}
-<a href="{% url 'home' %}"> Главная </a>
-<p class="loh">{{ post.title }}<p/>
+
+{% block body %}
+<div style="width: 80%; margin-left: 10%;">
+  <h1 style="margin-top: 30px;"> {{ post.title }} </h1>
+  <p style="margin-top: 30px;"> {{ post.content }} </p>
+
+</div>
 {% endblock %}

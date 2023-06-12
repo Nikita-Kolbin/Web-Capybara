@@ -1,0 +1,45 @@
+{% extends 'webapp/header.html' %}
+{% load webapp_tags %}
+{% load static %}
+
+{% block body %}
+
+<aside class="aside_profile">
+    {% if user.profile.avatar %}
+        <img src="{{user.profile.avatar.url}}" class="avatar1" alt="ava">
+    {% else %}
+        <img src="/media/default/pic.jpg" class="avatar1" alt="ava">
+    {% endif %}
+
+    <p style="font-size: 30px; margin-bottom: -7px">{{user.username}}</p>
+    <p style="font-size: 15px; text-align: center;">{{user.profile.speciality}}</p>
+
+    {% if user == request.user%}
+        <a class="btn btn-primary" href="#" role="button">Редактировать</a>
+    {% else %}
+        <a class="btn btn-primary" href="#" role="button">Подписаться</a>
+        <a class="btn btn-secondary" href="#" role="button"> Сообщение </a>
+    {% endif %}
+
+    <h5 style="padding-top: 50px;">Обо мне</h5>
+    <p> {{user.profile.about}} </p>
+</aside>
+
+<main class="main_profile">
+    {% if user == request.user%}
+    <p style="font-size: 40px;">Мои работы</p>
+    {% else %}
+    <p style="font-size: 40px;">Работы {{user.username}}</p>
+    {% endif %}
+
+    <div class="container text-center">
+      <div class="row row-cols-3">
+        {% for post in posts %}
+          {% post_card post=post user=False %}
+        {% endfor %}
+      </div>
+    </div>
+
+</main>
+
+{% endblock %}

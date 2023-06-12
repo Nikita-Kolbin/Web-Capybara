@@ -1,0 +1,56 @@
+<div class="col" style="margin-top: 40px">
+  {% if user %}
+      <div class="card" style="width: 18rem; height: 14rem;">
+  {% else %}
+      <div class="card" style="width: 18rem; height: 10rem;">
+  {% endif %}
+
+    <div class="hover ehover1">
+
+      <!-- Image -->
+      {% if post.preview_img %}
+        <img style="width: 18rem; height: 10rem;" class="img-responsive" src="{{ post.preview_img.url }}" alt="preview">
+      {% else %}
+        <img style="width: 18rem; height: 10rem;" class="img-responsive" src="/media/default/pic.jpg" alt="preview">
+      {% endif %}
+
+      <!-- Overlay -->
+      <div class="overlay">
+        <h2>
+          <button type="button" class="btn btn-dark " data-bs-toggle="modal" data-bs-target="#{{ post.pk }}">
+            {{ post.title }}
+          </button>
+        </h2>
+
+        <button class="info" data-toggle="modal" data-target="#modal1">Сохранить</button>
+
+      </div>
+    </div>
+
+    <!-- Popup -->
+      <div class="modal fade" id="{{ post.pk }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">{{ post.title }}</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              {{ post.content }}
+              <p><a href="{{ post.get_absolute_url }}"> Открыть страницу поста</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- User -->
+    {% if user %}
+    <div class="card-body" style="">
+      <h5 class="card-title" style="text-align: left;">
+        <a class="link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-0-hover" href = '{{ post.creator.profile.get_absolute_url }}'> {{ post.creator.username }} </a>
+      </h5>
+    </div>
+    {% endif %}
+
+  </div>
+</div>
