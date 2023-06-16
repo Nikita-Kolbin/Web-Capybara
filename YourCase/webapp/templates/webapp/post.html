@@ -1,10 +1,10 @@
 {% extends 'webapp/header.html' %}
+{% load webapp_tags %}
 
 
 {% block body %}
-<div style="width: 80%; margin-left: 10%;">
-  <h1 style="margin-top: 30px;"> {{ post.title }} </h1>
-  <p style="margin-top: 30px;"> {{ post.content }} </p>
-
+<div style="width: 70%; margin-left: 15%;">
+  <h1 style="margin-top: 30px;"> {% user_link user=post.creator post=post card=False %} </h1>
+  {% post_content post=post card=False %}
 </div>
 {% endblock %}

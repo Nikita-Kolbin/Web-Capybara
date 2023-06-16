@@ -17,7 +17,12 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display_links = ('user', 'avatar', 'speciality', 'about', 'link')
 
 
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ('post', 'image')
+    list_display_links = ('post', 'image')
+
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Profile, ProfileAdmin)
-
+admin.site.register(Image, ImageAdmin)

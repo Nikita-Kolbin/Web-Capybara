@@ -7,7 +7,7 @@ from django.urls import reverse
 
 class Post(models.Model):
     title = models.CharField(max_length=255, verbose_name='Заголовок')
-    content = models.TextField(verbose_name='Описание')
+    content = models.TextField(verbose_name='Текст')
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey('Category', on_delete=models.CASCADE, default=None, null=True, blank=True, verbose_name='Категория')
     preview_img = models.ImageField(upload_to='photos/%Y/%m/%d/', default=None, null=True, blank=True, verbose_name='Обложка')
@@ -39,8 +39,8 @@ class Category(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='photos/%Y/%m/%d/', default=None, null=True, blank=True)
-    speciality = models.CharField(max_length=255, null=True, blank=True)
-    about = models.TextField(null=True, blank=True)
+    speciality = models.CharField(max_length=255, null=True, blank=True, default='Не указано')
+    about = models.TextField(null=True, blank=True, default='Не указано')
     link = models.CharField(max_length=255, default=None, null=True, blank=True)
 
     def get_absolute_url(self):
@@ -51,16 +51,23 @@ class Profile(models.Model):
         verbose_name_plural = 'Профили'
         ordering = ['pk']
 
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
+
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 
-# class Image(models.Model):
-#     post = models.ForeignKey('Post', on_delete=models.CASCADE)
-#     image = models.ImageField(upload_to='photos/%Y/%m/%d/', default=None, null=True, blank=True)
+class Image(models.Model):
+    post = models.ForeignKey('Post', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='photos/%Y/%m/%d/', default=None, null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Картинка'
+        verbose_name_plural = 'Картинки'
+        ordering = ['pk']

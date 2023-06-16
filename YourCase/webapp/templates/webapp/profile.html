@@ -22,11 +22,11 @@
     {% endif %}
 
     <h5 style="padding-top: 50px;">Обо мне</h5>
-    <p> {{user.profile.about}} </p>
+    <p style="text-align: center;"> {{user.profile.about}} </p>
 </aside>
 
 <main class="main_profile">
-    {% if user == request.user%}
+    {% if user == request.user %}
     <p style="font-size: 40px;">Мои работы</p>
     {% else %}
     <p style="font-size: 40px;">Работы {{user.username}}</p>

@@ -9,12 +9,10 @@ class AddPostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ['title', 'content', 'creator', 'category', 'preview_img']
+        fields = ('title', 'content', 'category', 'preview_img')
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control'}),
-            'creator': forms.TextInput(attrs={'value': '', 'id': 'elder', 'type': 'hidden'}),
             'category': forms.Select(attrs={'class': 'form-control'}),
             'preview_img': forms.FileInput(attrs={'class': 'form-control'})
-
         }

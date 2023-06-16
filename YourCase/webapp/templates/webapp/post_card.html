@@ -1,3 +1,6 @@
+{% load webapp_tags %}
+
+
 <div class="col" style="margin-top: 40px">
   {% if user %}
       <div class="card" style="width: 18rem; height: 14rem;">
@@ -32,11 +35,13 @@
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">{{ post.title }}</h1>
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                {% user_link user=post.creator post=post card=True %}
+              </h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              {{ post.content }}
+              {% post_content post=post card=True %}
               <p><a href="{{ post.get_absolute_url }}"> Открыть страницу поста</a></p>
             </div>
           </div>

@@ -1,0 +1,24 @@
+<!--images-->
+{% for image in images %}
+<img style="width: 64rem; margin-top: 30px;"
+     src="{{ image.image.url }}" class="img-fluid" alt="img">
+{% endfor %}
+
+<!--about-->
+<div style="width: 64rem; {% if card %} margin-left: auto; margin-right: auto; {% endif %}">
+<h1 style="margin-top: 50px; text-align: left;"> О работе </h1>
+<p style="margin-top: 30px;">{{ post.content }}</p>
+</div>
+
+<!--footer-->
+<div style="background-color: black; width: 64rem; margin-top: 50px; {% if card %} margin-left: auto; margin-right: auto; {% endif %}">
+    <p style="text-align: right; color: black; margin-bottom: 50px;" >1</p>
+    <h2 style="text-align: center; color: white"> {{ post.title }} </h2>
+    <p style="text-align: right; color: black; margin-top: 50px;" >1</p>
+</div>
+
+<!--comments and tags-->
+<div style="width: 64rem; {% if card %} margin-left: auto; margin-right: auto; {% endif %}">
+<p style="margin-top: 30px;">Comments and tags</p>
+</div>
+

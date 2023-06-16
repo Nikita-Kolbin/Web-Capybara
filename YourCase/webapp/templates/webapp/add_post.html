@@ -8,16 +8,18 @@
         <form action="{% url 'add_post' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
+
+            <p>
+                <label>Изображения:</label>
+                <input required type="file" name="images" class="form-control" multiple>
+            </p>
+
             <button type="submit" class="btn btn-primary">Добавить</button>
         </form>
     </div>
+
 {% else %}
 <h1>Чтобы добавить пост войди в аккаунт</h1>
 {% endif %}
-
-<script>
-    var user = {{ request.user.pk }};
-    document.getElementById("elder").value = user;
-</script>
 
 {% endblock %}
