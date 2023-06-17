@@ -13,12 +13,13 @@
 <!--footer-->
 <div style="background-color: black; width: 64rem; margin-top: 50px; {% if card %} margin-left: auto; margin-right: auto; {% endif %}">
     <p style="text-align: right; color: black; margin-bottom: 50px;" >1</p>
-    <h2 style="text-align: center; color: white"> {{ post.title }} </h2>
+    <h2 style="text-align: center; color: white;"> {{ post.title }} </h2>
+    <h2 style="text-align: center; color: white; font-size: 20px"> Категория: {{ post.category.name }} </h2>
     <p style="text-align: right; color: black; margin-top: 50px;" >1</p>
 </div>
 
 <!--comments and tags-->
-<div style="width: 64rem; {% if card %} margin-left: auto; margin-right: auto; {% endif %}">
-<p style="margin-top: 30px;">Comments and tags</p>
-</div>
+<!--<div style="width: 64rem; {% if card %} margin-left: auto; margin-right: auto; {% endif %}">-->
+<!--<p style="margin-top: 30px;">Comments and tags</p>-->
+<!--</div>-->
 

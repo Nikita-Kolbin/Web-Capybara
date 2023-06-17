@@ -24,10 +24,22 @@ class Home(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Главная'
+        context['cats'] = Category.objects.all()
         return context
 
     def get_queryset(self):
         return Post.objects.filter(is_published=True)
+
+
+def category(request, category_id):
+    cat = Category.objects.get(pk=category_id)
+    context = {
+        'posts': Post.objects.filter(category=cat, is_published=True),
+        'title': cat.name,
+        'cats': Category.objects.all(),
+        'category': cat
+    }
+    return render(request, 'webapp/index.html', context=context)
 
 
 def profile(request, username):
@@ -36,7 +48,8 @@ def profile(request, username):
         'user': user,
         'posts': Post.objects.filter(creator=user, is_published=True),
         'unpublished': Post.objects.filter(creator=user, is_published=False),
-        'title': user.username
+        'title': user.username,
+        'cats': Category.objects.all()
     }
     return render(request, 'webapp/profile.html', context=context)
 
@@ -65,14 +78,14 @@ def add_post(request):
     else:
         form = AddPostForm()
 
-    return render(request, 'webapp/add_post.html', context={'form': form, 'title': 'Добавить пост'})
+    return render(request, 'webapp/add_post.html', context={'form': form, 'title': 'Добавить пост', 'cats': Category.objects.all()})
 
 
 def edit_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     if request.method == 'GET':
         form = AddPostForm(instance=post)
-        return render(request, 'webapp/edit_post.html', context={'form': form, 'post': post})
+        return render(request, 'webapp/edit_post.html', context={'form': form, 'post': post, 'cats': Category.objects.all(), 'title': 'Изменить пост'})
     elif request.method == 'POST':
         form = AddPostForm(request.POST, request.FILES, instance=post)
         images = request.FILES.getlist('images')
@@ -86,12 +99,12 @@ def edit_post(request, post_id):
                         post=post,
                         image=image
                     )
-            return redirect('home')
+            return redirect(reverse_lazy('profile', kwargs={'username': post.creator.username}))
 
 
 def delete_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    context = {'post': post}
+    context = {'post': post, 'cats': Category.objects.all(), 'title': 'Удалить пост'}
 
     if request.method == 'GET':
         return render(request, 'webapp/delete_post.html', context)
@@ -107,6 +120,12 @@ class EditProfile(UpdateView):
     template_name = 'webapp/edit_profile.html'
     slug_url_kwarg = 'profile_id'
     slug_field = 'id'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Редактировать профиль'
+        context['cats'] = Category.objects.all()
+        return context
 
     def get_success_url(self):
         return reverse_lazy('profile', kwargs={'username': self.object.user.username})

@@ -15,9 +15,19 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Лучшие</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Поиск и найм</a>
+
+        <!--Category-->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Поиск по категориям
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            {% for cat in cats %}
+              <li><a class="dropdown-item" href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></li>
+            {% endfor %}
+          </ul>
         </li>
+
         <li class="nav-item">
           <a class="nav-link" href="#">Вакансии</a>
         </li>

@@ -4,7 +4,7 @@
 {% block body %}
 
 {% if request.user == post.creator %}
-    <div style="width: 90%; margin-left: 5%;">
+    <div style="width: 90%; margin-left: 5%; margin-bottom: 50px;">
         <h1>Редактировать пост {{ post.title }}</h1>
         <form action="{% url 'edit_post' post.pk %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}

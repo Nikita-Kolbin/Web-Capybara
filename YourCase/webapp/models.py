@@ -31,6 +31,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'category_id': self.pk})
+
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
@@ -42,7 +45,7 @@ class Profile(models.Model):
     avatar = models.ImageField(upload_to='photos/%Y/%m/%d/', default=None, null=True, blank=True, verbose_name='Аватар')
     speciality = models.CharField(max_length=255, null=True, blank=True, default='Не указано', verbose_name='Специальность')
     about = models.TextField(null=True, blank=True, default='Не указано', verbose_name='Описание')
-    link = models.CharField(max_length=255, null=True, blank=True, default='Не указано', verbose_name='Ссылка')
+    link = models.CharField(max_length=255, null=True, blank=True, default=None, verbose_name='Ссылка')
 
     def get_absolute_url(self):
         return reverse('profile', kwargs={'username': self.user.username})

@@ -3,7 +3,11 @@
 
 {% block body %}
 
-<div class="container text-center">
+{% if category %}
+<h1 style="text-align: center; margin-top: 50px;"> {{ category.name }} </h1>
+{% endif %}
+
+<div class="container text-center" style="margin-bottom: 50px">
   <div class="row row-cols-4">
     {% for post in posts %}
       {% post_card post=post request=request user=True %}

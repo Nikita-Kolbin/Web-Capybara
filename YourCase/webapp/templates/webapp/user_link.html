@@ -13,7 +13,7 @@
 <!--Edit and delete post-->
 {% if request.user == user %}
     <a href="{% url 'edit_post' post.pk %}" class="link-dark link-underline-opacity-0"
-       style="font-size: 40px; margin-left: 400px"> (Изменить) </a>
+       style="font-size: 40px; margin-left: 50px"> (Изменить) </a>
 
     <a href="{% url 'delete_post' post.pk %}" class="link-dark link-underline-opacity-0"
        style="font-size: 40px; margin-left: 0px">(Удалить)</a>

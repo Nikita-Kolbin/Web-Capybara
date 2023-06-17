@@ -4,12 +4,11 @@
 {% block content %}
 
 <p style="font-size: 30px;">Вход</p>
-<a href="{% url 'home' %}" style="font-size: 18px;"> Главная </a>
 
 <form action="{% url 'login' %}" method="post">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Войти</button>
 </form>
 
 {% endblock %}
