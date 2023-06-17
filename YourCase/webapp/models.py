@@ -11,6 +11,7 @@ class Post(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey('Category', on_delete=models.CASCADE, default=None, null=True, blank=True, verbose_name='Категория')
     preview_img = models.ImageField(upload_to='photos/%Y/%m/%d/', default=None, null=True, blank=True, verbose_name='Обложка')
+    is_published = models.BooleanField(default=False, verbose_name='Опубликовать')
 
     def get_absolute_url(self):
         return reverse('post', kwargs={'post_id': self.pk})
@@ -38,10 +39,10 @@ class Category(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='photos/%Y/%m/%d/', default=None, null=True, blank=True)
-    speciality = models.CharField(max_length=255, null=True, blank=True, default='Не указано')
-    about = models.TextField(null=True, blank=True, default='Не указано')
-    link = models.CharField(max_length=255, default=None, null=True, blank=True)
+    avatar = models.ImageField(upload_to='photos/%Y/%m/%d/', default=None, null=True, blank=True, verbose_name='Аватар')
+    speciality = models.CharField(max_length=255, null=True, blank=True, default='Не указано', verbose_name='Специальность')
+    about = models.TextField(null=True, blank=True, default='Не указано', verbose_name='Описание')
+    link = models.CharField(max_length=255, null=True, blank=True, default='Не указано', verbose_name='Ссылка')
 
     def get_absolute_url(self):
         return reverse('profile', kwargs={'username': self.user.username})

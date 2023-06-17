@@ -6,7 +6,7 @@
 <div class="container text-center">
   <div class="row row-cols-4">
     {% for post in posts %}
-      {% post_card post=post user=True %}
+      {% post_card post=post request=request user=True %}
     {% endfor %}
   </div>
 </div>

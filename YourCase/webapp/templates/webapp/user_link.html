@@ -1,6 +1,6 @@
-
+<!--User-->
 <a href="{{ user.profile.get_absolute_url }}" class="link-dark link-underline-opacity-0"
-   style="font-size: 50px; width: 64rem; {% if card %} margin-left: 38px; {% endif %}">
+   style="font-size: 50px; width: 64rem; {% if card %} margin-left: 38px; {% endif %};">
     {% if user.profile.avatar %}
         <img src="{{user.profile.avatar.url}}" class="avatar1" alt="ava">
     {% else %}
@@ -8,10 +8,13 @@
     {% endif %}
 
     {{ user.username }}
-
-<!--    {% if request.user == user %}-->
-<!--        <a href="{% url 'delete_post' post.pk %}">(Удалить)</a>-->
-<!--    {% endif %}-->
-    {{ request.user.username }}
-
 </a>
+
+<!--Edit and delete post-->
+{% if request.user == user %}
+    <a href="{% url 'edit_post' post.pk %}" class="link-dark link-underline-opacity-0"
+       style="font-size: 40px; margin-left: 400px"> (Изменить) </a>
+
+    <a href="{% url 'delete_post' post.pk %}" class="link-dark link-underline-opacity-0"
+       style="font-size: 40px; margin-left: 0px">(Удалить)</a>
+{% endif %}

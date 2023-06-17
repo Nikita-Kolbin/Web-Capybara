@@ -1,0 +1,14 @@
+{% extends 'webapp/header.html' %}
+
+
+{% block body %}
+<div style="width: 90%; margin-left: 5%;">
+    <h1> Редактировать профиль </h1>
+    <form action="{% url 'edit_profile' request.user.profile.pk %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Применить</button>
+    </form>
+</div>
+{% endblock %}

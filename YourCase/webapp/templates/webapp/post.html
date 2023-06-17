@@ -4,7 +4,7 @@
 
 {% block body %}
 <div style="width: 70%; margin-left: 15%;">
-  <h1 style="margin-top: 30px;"> {% user_link user=post.creator post=post card=False %} </h1>
+  <h1 style="margin-top: 30px;"> {% user_link request=request post=post card=False %} </h1>
   {% post_content post=post card=False %}
 </div>
 {% endblock %}
