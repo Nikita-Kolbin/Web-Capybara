@@ -133,5 +133,5 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/'
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://b517-37-140-55-136.ngrok-free.app'
+    'https://11dd-37-140-55-136.ngrok-free.app'
 ]
